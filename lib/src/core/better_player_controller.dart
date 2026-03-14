@@ -1102,7 +1102,16 @@ class BetterPlayerController {
           ),
         );
       case VideoEventType.bufferingEnd:
-        _postEvent(BetterPlayerEvent(BetterPlayerEventType.bufferingEnd));
+        _postEvent(
+          BetterPlayerEvent(
+            BetterPlayerEventType.bufferingEnd,
+            parameters: <String, dynamic>{
+              'width': event.currentVideoWidth,
+              'height': event.currentVideoHeight,
+              'bitrate': event.currentVideoBitrate,
+            },
+          ),
+        );
       default:
         break;
     }
