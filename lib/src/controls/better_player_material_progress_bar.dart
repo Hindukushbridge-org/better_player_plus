@@ -1,10 +1,9 @@
-// ignore_for_file: cascade_invocations
+// ignore_for_file: cascade_invocations // Progress bar uses a cascade call pattern for readability
 
 import 'dart:async';
 import 'package:better_player_plus/better_player_plus.dart';
 import 'package:better_player_plus/src/video_player/video_player.dart';
 import 'package:better_player_plus/src/video_player/video_player_platform_interface.dart';
-import 'package:flutter/material.dart';
 
 class BetterPlayerMaterialVideoProgressBar extends StatefulWidget {
   BetterPlayerMaterialVideoProgressBar(

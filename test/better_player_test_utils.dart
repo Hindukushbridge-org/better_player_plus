@@ -1,4 +1,4 @@
-// ignore_for_file: cascade_invocations, discarded_futures
+// ignore_for_file: cascade_invocations, discarded_futures // Test utilities use cascades and unobserved async setup calls
 
 import 'package:better_player_plus/better_player_plus.dart';
 import 'package:better_player_plus/src/video_player/video_player.dart';

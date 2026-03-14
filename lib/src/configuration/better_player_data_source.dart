@@ -95,10 +95,9 @@ class BetterPlayerDataSource {
     useAsmsTracks: useAsmsTracks,
     resolutions: qualities,
     cacheConfiguration: cacheConfiguration,
-    notificationConfiguration: notificationConfiguration = const BetterPlayerNotificationConfiguration(
-      showNotification: false,
-    ),
     overriddenDuration: overriddenDuration,
+    notificationConfiguration: notificationConfiguration,
+
     placeholder: placeholder,
   );
 
@@ -125,9 +124,7 @@ class BetterPlayerDataSource {
     useAsmsTracks: useAsmsTracks,
     resolutions: qualities,
     cacheConfiguration: cacheConfiguration,
-    notificationConfiguration: notificationConfiguration = const BetterPlayerNotificationConfiguration(
-      showNotification: false,
-    ),
+    notificationConfiguration: notificationConfiguration,
     overriddenDuration: overriddenDuration,
     placeholder: placeholder,
   );

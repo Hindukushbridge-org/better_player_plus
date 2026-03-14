@@ -108,11 +108,11 @@ sealed class BetterPlayerHlsUtils {
       int microSecondsFromStart = 0;
       for (final Segment segment in hlsMediaPlaylist.segments) {
         final split = rendition.url.toString().split('/');
-        var realUrl = '';
+        final realUrlBuffer = StringBuffer();
         for (var index = 0; index < split.length - 1; index++) {
-          // ignore: use_string_buffers
-          realUrl += '${split[index]}/';
+          realUrlBuffer.write('${split[index]}/');
         }
+        var realUrl = realUrlBuffer.toString();
         if (segment.url?.startsWith('http') ?? false) {
           realUrl = segment.url!;
         } else {

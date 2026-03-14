@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_annotating_with_dynamic
-
 import 'dart:async';
 
 import 'package:better_player_plus/src/configuration/better_player_buffering_configuration.dart';
@@ -110,7 +108,8 @@ class MethodChannelVideoPlayer extends VideoPlayerPlatform {
       _channel.invokeMethod<void>('setLooping', <String, dynamic>{'textureId': textureId, 'looping': looping});
 
   @override
-  Future<void> setAspectRatio(int? textureId, String aspectRatio) => _channel.invokeMethod<void>('setAspectRatio', <String, dynamic>{'textureId': textureId, 'ratio': aspectRatio});
+  Future<void> setAspectRatio(int? textureId, String aspectRatio) =>
+      _channel.invokeMethod<void>('setAspectRatio', <String, dynamic>{'textureId': textureId, 'ratio': aspectRatio});
 
   @override
   Future<void> play(int? textureId) => _channel.invokeMethod<void>('play', <String, dynamic>{'textureId': textureId});
@@ -156,7 +155,7 @@ class MethodChannelVideoPlayer extends VideoPlayerPlatform {
   }
 
   @override
-  Future<void> enablePictureInPicture(int? textureId, double? top, double? left, double? width, double? height) async =>
+  Future<void> enablePictureInPicture(int? textureId, double? top, double? left, double? width, double? height) =>
       _channel.invokeMethod<void>('enablePictureInPicture', <String, dynamic>{
         'textureId': textureId,
         'top': top,
@@ -297,7 +296,7 @@ class MethodChannelVideoPlayer extends VideoPlayerPlatform {
 
   EventChannel _eventChannelFor(int? textureId) => EventChannel('better_player_channel/videoEvents$textureId');
 
-  DurationRange _toDurationRange(dynamic value) {
+  DurationRange _toDurationRange(value) {
     final List<dynamic> pair = value as List;
     return DurationRange(Duration(milliseconds: pair[0] as int), Duration(milliseconds: pair[1] as int));
   }

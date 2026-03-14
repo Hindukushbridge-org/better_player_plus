@@ -1,6 +1,8 @@
-import 'package:flutter/foundation.dart';
-
 /// Represents HLS / DASH track which can be played within player
+library;
+
+import 'package:better_player_plus/better_player_plus.dart';
+
 @immutable
 class BetterPlayerAsmsTrack {
   const BetterPlayerAsmsTrack(

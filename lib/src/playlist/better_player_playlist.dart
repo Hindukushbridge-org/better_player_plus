@@ -2,7 +2,6 @@ import 'package:better_player_plus/better_player_plus.dart';
 import 'package:better_player_plus/src/core/better_player_utils.dart';
 
 // Flutter imports:
-import 'package:flutter/material.dart';
 
 ///Special version of Better Player used to play videos in playlist.
 class BetterPlayerPlaylist extends StatefulWidget {

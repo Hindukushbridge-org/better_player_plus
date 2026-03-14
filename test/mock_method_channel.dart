@@ -1,4 +1,4 @@
-// ignore_for_file: unawaited_futures
+// ignore_for_file: unawaited_futures // Mock method channel uses fire-and-forget pattern for simplicity in tests
 
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';

@@ -1,6 +1,4 @@
 import 'package:better_player_plus/better_player_plus.dart';
-import 'package:better_player_plus/src/enum/aspect_enum.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 ///Configuration of Better Player. Allows to setup general behavior of player.

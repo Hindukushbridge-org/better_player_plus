@@ -59,7 +59,7 @@ final class BetterPlayerUtils {
 
   static void log(String logMessage) {
     if (!kReleaseMode) {
-      // ignore: avoid_print
+      // ignore: avoid_print // Debug logging is intentionally using print in non-release mode
       print(logMessage);
     }
   }
