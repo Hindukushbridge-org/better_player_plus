@@ -252,7 +252,11 @@ class BetterPlayerPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
                 dispose(player, textureId)
                 result.success(null)
             }
-
+            "setAspectRatio" -> {
+                // Aspect ratio is handled by Flutter on the UI side. 
+                // Return success to prevent MissingPluginException.
+                result.success(null)
+            }
             else -> result.notImplemented()
         }
     }
