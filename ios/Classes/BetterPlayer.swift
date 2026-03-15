@@ -127,47 +127,6 @@ public class BetterPlayer: NSObject, FlutterPlatformView, FlutterStreamHandler, 
         return degrees
     }
 
-    private func getVideoComposition(transform: CGAffineTransform, asset: AVAsset, videoTrack: AVAssetTrack) -> AVMutableVideoComposition {
-        let instruction = AVMutableVideoCompositionInstruction()
-        instruction.timeRange = CMTimeRangeMake(start: .zero, duration: asset.duration)
-        let layerInstruction = AVMutableVideoCompositionLayerInstruction(assetTrack: videoTrack)
-        layerInstruction.setTransform(preferredTransform, at: .zero)
-
-        let videoComposition = AVMutableVideoComposition()
-        instruction.layerInstructions = [layerInstruction]
-        videoComposition.instructions = [instruction]
-
-        var width = videoTrack.naturalSize.width
-        var height = videoTrack.naturalSize.height
-        let rotationDegrees = Int(round(radiansToDegrees(atan2(preferredTransform.b, preferredTransform.a))))
-        if rotationDegrees == 90 || rotationDegrees == 270 {
-            width = videoTrack.naturalSize.height
-            height = videoTrack.naturalSize.width
-        }
-        videoComposition.renderSize = CGSize(width: width, height: height)
-
-        let nominalFrameRate = videoTrack.nominalFrameRate
-        var fps: Int32 = 30
-        if nominalFrameRate > 0 { fps = Int32(ceil(nominalFrameRate)) }
-        videoComposition.frameDuration = CMTimeMake(value: 1, timescale: fps)
-        return videoComposition
-    }
-
-    private func fixTransform(_ videoTrack: AVAssetTrack) -> CGAffineTransform {
-        var transform = videoTrack.preferredTransform
-        let rotationDegrees = Int(round(radiansToDegrees(atan2(transform.b, transform.a))))
-        if rotationDegrees == 90 {
-            transform.tx = videoTrack.naturalSize.height
-            transform.ty = 0
-        } else if rotationDegrees == 180 {
-            transform.tx = videoTrack.naturalSize.width
-            transform.ty = videoTrack.naturalSize.height
-        } else if rotationDegrees == 270 {
-            transform.tx = 0
-            transform.ty = videoTrack.naturalSize.width
-        }
-        return transform
-    }
 
     public func setDataSourceAsset(_ assetPath: String, key: String?, certificateUrl: String?, licenseUrl: String?, cacheKey: String?, cacheManager: CacheManager, overriddenDuration: Int) {
         if let path = Bundle.main.path(forResource: assetPath, ofType: nil) {
