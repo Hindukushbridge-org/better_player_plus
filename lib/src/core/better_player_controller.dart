@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:better_player_plus/better_player_plus.dart';
 import 'package:better_player_plus/src/configuration/better_player_controller_event.dart';
 import 'package:better_player_plus/src/core/better_player_utils.dart';
+import 'package:better_player_plus/src/enum/aspect_enum.dart';
 import 'package:better_player_plus/src/subtitles/better_player_subtitle.dart';
 import 'package:better_player_plus/src/subtitles/better_player_subtitles_factory.dart';
 import 'package:better_player_plus/src/video_player/video_player.dart';
@@ -996,7 +997,6 @@ class BetterPlayerController {
       throw StateError('The data source has not been initialized');
     }
     return videoPlayerController!.setAspectRatio(aspectRatio.name);
-
   }
 
   ///Enable Picture in Picture (PiP) mode. [betterPlayerGlobalKey] is required
