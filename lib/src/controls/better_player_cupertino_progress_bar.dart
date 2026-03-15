@@ -1,4 +1,4 @@
-// ignore_for_file: cascade_invocations, discarded_futures
+// ignore_for_file: cascade_invocations, discarded_futures // Progress bar uses a cascade pattern and the futures are intentionally unobserved
 
 import 'dart:async';
 import 'package:better_player_plus/src/controls/better_player_progress_colors.dart';

@@ -326,12 +326,24 @@ public class BetterPlayer: NSObject, FlutterPlatformView, FlutterStreamHandler, 
         } else if context == &playbackLikelyToKeepUpContext {
             if player.currentItem?.isPlaybackLikelyToKeepUp == true {
                 updatePlayingState()
-                eventSink?(["event": "bufferingEnd", "key": key as Any])
+                var event: [String: Any] = ["event": "bufferingEnd", "key": key as Any]
+                if let item = player.currentItem {
+                    let size = item.presentationSize
+                    event["currentVideoWidth"] = size.width
+                    event["currentVideoHeight"] = size.height
+                }
+                eventSink?(event)
             }
         } else if context == &playbackBufferEmptyContext {
             eventSink?(["event": "bufferingStart", "key": key as Any])
         } else if context == &playbackBufferFullContext {
-            eventSink?(["event": "bufferingEnd", "key": key as Any])
+            var event: [String: Any] = ["event": "bufferingEnd", "key": key as Any]
+            if let item = player.currentItem {
+                let size = item.presentationSize
+                event["currentVideoWidth"] = size.width
+                event["currentVideoHeight"] = size.height
+            }
+            eventSink?(event)
         }
     }
 

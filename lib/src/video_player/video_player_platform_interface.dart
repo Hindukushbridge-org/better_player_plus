@@ -377,6 +377,9 @@ class VideoEvent {
     this.size,
     this.buffered,
     this.position,
+    this.currentVideoWidth,
+    this.currentVideoHeight,
+    this.currentVideoBitrate,
   });
 
   /// The type of the event.
@@ -404,6 +407,15 @@ class VideoEvent {
 
   ///Seek position
   final Duration? position;
+
+  /// Current video width
+  final int? currentVideoWidth;
+
+  /// Current video height
+  final int? currentVideoHeight;
+
+  /// Current video bitrate
+  final int? currentVideoBitrate;
 
   @override
   bool operator ==(Object other) =>

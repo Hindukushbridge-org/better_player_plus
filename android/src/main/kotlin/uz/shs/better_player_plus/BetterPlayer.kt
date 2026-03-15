@@ -478,6 +478,12 @@ internal class BetterPlayer(
                         }
                         val event: MutableMap<String, Any> = HashMap()
                         event["event"] = "bufferingEnd"
+                        // Include current video format info
+                        exoPlayer?.videoFormat?.let { fmt ->
+                            event["currentVideoWidth"] = fmt.width
+                            event["currentVideoHeight"] = fmt.height
+                            event["currentVideoBitrate"] = fmt.bitrate
+                        }
                         eventSink.success(event)
                     }
 

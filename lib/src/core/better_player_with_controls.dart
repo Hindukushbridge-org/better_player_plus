@@ -8,7 +8,6 @@ import 'package:better_player_plus/src/controls/better_player_material_controls.
 import 'package:better_player_plus/src/core/better_player_utils.dart';
 import 'package:better_player_plus/src/subtitles/better_player_subtitles_drawer.dart';
 import 'package:better_player_plus/src/video_player/video_player.dart';
-import 'package:flutter/material.dart';
 
 class BetterPlayerWithControls extends StatefulWidget {
   const BetterPlayerWithControls({super.key, this.controller});
@@ -111,7 +110,7 @@ class _BetterPlayerWithControlsState extends State<BetterPlayerWithControls> {
     _initialized = true;
 
     final bool placeholderOnTop = betterPlayerController.betterPlayerConfiguration.placeholderOnTop;
-    // ignore: avoid_unnecessary_containers
+    // ignore: avoid_unnecessary_containers // Container wraps Stack to apply consistent size behaviour for fit widget
     return Container(
       child: Stack(
         fit: StackFit.passthrough,

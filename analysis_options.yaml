@@ -8,3 +8,7 @@ analyzer:
     no_default_cases: ignore
     discarded_futures: ignore
     avoid_positional_boolean_parameters: ignore
+    # inference_failure_on_untyped_parameter conflicts with avoid_annotating_with_dynamic
+    # — adding `dynamic` satisfies one but triggers the other, so we suppress both.
+    inference_failure_on_untyped_parameter: ignore
+    strict_top_level_inference: ignore

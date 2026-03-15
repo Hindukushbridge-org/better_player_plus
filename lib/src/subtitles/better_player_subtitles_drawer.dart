@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:better_player_plus/better_player_plus.dart';
 import 'package:better_player_plus/src/subtitles/better_player_subtitle.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 
 class BetterPlayerSubtitlesDrawer extends StatefulWidget {
@@ -22,9 +21,7 @@ class BetterPlayerSubtitlesDrawer extends StatefulWidget {
 }
 
 class _BetterPlayerSubtitlesDrawerState extends State<BetterPlayerSubtitlesDrawer> {
-  final RegExp htmlRegExp =
-      // ignore: unnecessary_raw_strings
-      RegExp(r'<[^>]*>', multiLine: true);
+  final RegExp htmlRegExp = RegExp('<[^>]*>', multiLine: true);
   late TextStyle _innerTextStyle;
   late TextStyle _outerTextStyle;
 

@@ -5,7 +5,6 @@ import 'package:better_player_plus/src/controls/better_player_clickable_widget.d
 import 'package:better_player_plus/src/core/better_player_utils.dart';
 import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 ///Base class for both material and cupertino controls
 abstract class BetterPlayerControlsState<T extends StatefulWidget> extends State<T> {
@@ -60,7 +59,7 @@ abstract class BetterPlayerControlsState<T extends StatefulWidget> extends State
   Widget _buildMoreOptionsList() {
     final translations = betterPlayerController!.translations;
     return SingleChildScrollView(
-      // ignore: avoid_unnecessary_containers
+      // ignore: avoid_unnecessary_containers // Container is needed to apply consistent styling to the bottom sheet list
       child: Container(
         child: Column(
           children: [

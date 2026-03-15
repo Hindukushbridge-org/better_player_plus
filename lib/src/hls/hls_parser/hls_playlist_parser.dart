@@ -94,15 +94,10 @@ class HlsPlaylistParser {
   static const String regexpGroupId = 'GROUP-ID="(.+?)"';
   static const String regexpCharacteristics = 'CHARACTERISTICS="(.+?)"';
   static const String regexpInStreamId = r'INSTREAM-ID="((?:CC|SERVICE)\d+)"';
-  static final String regexpAutoSelect = // ignore: non_constant_identifier_names
-  _compileBooleanAttrPattern(
-    'AUTOSELECT',
-  );
+  static final String regexpAutoSelect = _compileBooleanAttrPattern('AUTOSELECT');
 
-  // ignore: non_constant_identifier_names
   static final String regexpDefault = _compileBooleanAttrPattern('DEFAULT');
 
-  // ignore: non_constant_identifier_names
   static final String regexpForced = _compileBooleanAttrPattern('FORCED');
   static const String regexpValue = 'VALUE="(.+?)"';
   static const String regexpImport = 'IMPORT="(.+?)"';
@@ -110,15 +105,13 @@ class HlsPlaylistParser {
 
   final HlsMasterPlaylist masterPlaylist;
 
-  Future<HlsPlaylist> parseString(Uri? uri, String inputString) async {
+  Future<HlsPlaylist> parseString(Uri? uri, String inputString) {
     final List<String> lines = const LineSplitter().convert(inputString);
     return parse(uri, lines);
   }
 
   Future<HlsPlaylist> parse(Uri? uri, List<String> inputLineList) async {
-    final List<String> lineList = inputLineList
-        .where((line) => line.trim().isNotEmpty) // ignore: always_specify_types
-        .toList();
+    final List<String> lineList = inputLineList.where((line) => line.trim().isNotEmpty).toList();
 
     if (!_checkPlaylistHeader(lineList[0])) {
       throw UnrecognizedInputFormatException('Input does not start with the #EXTM3U header.', uri);
@@ -171,21 +164,21 @@ class HlsPlaylistParser {
   }
 
   HlsMasterPlaylist _parseMasterPlaylist(Iterator<String> extraLines, String baseUri) {
-    final List<String> tags = []; // ignore: always_specify_types
-    final List<String> mediaTags = []; // ignore: always_specify_types
-    final List<DrmInitData> sessionKeyDrmInitData = []; // ignore: always_specify_types
-    final List<Variant> variants = []; // ignore: always_specify_types
-    final List<Rendition> videos = []; // ignore: always_specify_types
-    final List<Rendition> audios = []; // ignore: always_specify_types
-    final List<Rendition> subtitles = []; // ignore: always_specify_types
-    final List<Rendition> closedCaptions = []; // ignore: always_specify_types
-    final Map<Uri, List<VariantInfo>> urlToVariantInfos = {}; // ignore: always_specify_types
+    final List<String> tags = [];
+    final List<String> mediaTags = [];
+    final List<DrmInitData> sessionKeyDrmInitData = [];
+    final List<Variant> variants = [];
+    final List<Rendition> videos = [];
+    final List<Rendition> audios = [];
+    final List<Rendition> subtitles = [];
+    final List<Rendition> closedCaptions = [];
+    final Map<Uri, List<VariantInfo>> urlToVariantInfos = {};
     Format? muxedAudioFormat;
     bool noClosedCaptions = false;
     bool hasIndependentSegmentsTag = false;
     List<Format>? muxedCaptionFormats;
 
-    final Map<String?, String> variableDefinitions = {}; // ignore: always_specify_types
+    final Map<String?, String> variableDefinitions = {};
 
     while (extraLines.moveNext()) {
       final String line = extraLines.current;
@@ -232,10 +225,7 @@ class HlsPlaylistParser {
             variableDefinitions: variableDefinitions,
           );
           final String scheme = _parseEncryptionScheme(method);
-          final DrmInitData drmInitData = DrmInitData(
-            schemeType: scheme,
-            schemeData: [schemeData],
-          ); // ignore: always_specify_types
+          final DrmInitData drmInitData = DrmInitData(schemeType: scheme, schemeData: [schemeData]);
           sessionKeyDrmInitData.add(drmInitData);
         }
       } else if (line.startsWith(tagStreamInf)) {
@@ -335,7 +325,7 @@ class HlsPlaylistParser {
 
         List<VariantInfo>? variantInfosForUrl = urlToVariantInfos[uri];
         if (variantInfosForUrl == null) {
-          variantInfosForUrl = []; // ignore: always_specify_types
+          variantInfosForUrl = [];
           urlToVariantInfos[uri] = variantInfosForUrl;
         }
 
@@ -351,8 +341,8 @@ class HlsPlaylistParser {
       }
     }
 
-    final List<Variant> deduplicatedVariants = []; // ignore: always_specify_types
-    final Set<Uri> urlsInDeduplicatedVariants = {}; // ignore: always_specify_types
+    final List<Variant> deduplicatedVariants = [];
+    final Set<Uri> urlsInDeduplicatedVariants = {};
     for (int i = 0; i < variants.length; i++) {
       final Variant variant = variants[i];
       if (urlsInDeduplicatedVariants.add(variant.url)) {
@@ -365,7 +355,6 @@ class HlsPlaylistParser {
       }
     }
 
-    // ignore: always_specify_types
     for (final line in mediaTags) {
       final String? groupId = _parseStringAttr(
         source: line,
@@ -492,7 +481,7 @@ class HlsPlaylistParser {
               mimeType = MimeTypes.applicationCea708;
               accessibilityChannel = int.parse(instreamId.substring(7));
             }
-            muxedCaptionFormats ??= []; // ignore: always_specify_types
+            muxedCaptionFormats ??= [];
             muxedCaptionFormats.add(
               Format(
                 id: formatId,
@@ -513,7 +502,7 @@ class HlsPlaylistParser {
 
     if (noClosedCaptions) {
       muxedCaptionFormats = [];
-    } // ignore: always_specify_types
+    }
 
     return HlsMasterPlaylist(
       baseUri: baseUri,
@@ -693,12 +682,12 @@ class HlsPlaylistParser {
     Segment? initializationSegment;
     final Map<String?, String?> variableDefinitions = {};
     final List<Segment> segments = [];
-    final List<String> tags = []; // ignore: always_specify_types
+    final List<String> tags = [];
     int? segmentByteRangeLength;
     int? segmentMediaSequence = 0;
     int? segmentDurationUs;
     String? segmentTitle;
-    final Map<String?, SchemeData> currentSchemeDatas = {}; // ignore: always_specify_types
+    final Map<String?, SchemeData> currentSchemeDatas = {};
     DrmInitData? cachedDrmInitData;
     String? encryptionScheme;
     DrmInitData? playlistProtectionSchemes;
@@ -730,11 +719,7 @@ class HlsPlaylistParser {
           playlistType = HlsMediaPlaylist.playlistTypeEvent;
         }
       } else if (line.startsWith(tagStart)) {
-        final String string = _parseStringAttr(
-          source: line,
-          pattern: regexpTimeOffset,
-          variableDefinitions: {},
-        )!; // ignore: always_specify_types
+        final String string = _parseStringAttr(source: line, pattern: regexpTimeOffset, variableDefinitions: {})!;
         startOffsetUs = (double.parse(string) * 1000000).toInt();
       } else if (line.startsWith(tagInitSegment)) {
         final String? uri = _parseStringAttr(
