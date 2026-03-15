@@ -212,9 +212,6 @@ public class BetterPlayer: NSObject, FlutterPlatformView, FlutterStreamHandler, 
         self.stalledCount = 0
         self.isStalledCheckStarted = false
         self.playerRate = 1
-        if #available(iOS 10.0, *) {
-            item.preferredForwardBufferDuration = 6.0
-        }
         player.replaceCurrentItem(with: item)
 
         let asset = item.asset
